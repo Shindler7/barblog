@@ -13,7 +13,10 @@ media
 static/
 staticfiles/
 node_modules/
+!staticshare/frontend/build/
+!staticshare/backend/build/
 staticshare/frontend/src/
+staticshare/backend/src/
 
 ### Python environment
 req_dev.txt
@@ -28,7 +31,7 @@ req_dev.txt
 
 # Distribution / packaging
 .Python
-build/
+/build/
 develop-eggs/
 dist/
 downloads/

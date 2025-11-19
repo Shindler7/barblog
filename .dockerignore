@@ -6,7 +6,6 @@ logs/
 media/
 staticshare/frontend/src/
 staticshare/backend/src/
-static/
 
 # Файлы
 .flake8

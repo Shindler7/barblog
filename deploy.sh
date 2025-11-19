@@ -29,12 +29,20 @@ for dir in media logs staticfiles; do
     fi
 done
 
+# Остановим старый контейнер.
+docker compose -f "$COMPOSE_FILE" down --remove-orphans
+
 # Сборка и запуск контейнера
 echo "🔧 Сборка контейнеров..."
 docker compose -f "$COMPOSE_FILE" build --pull
 
 echo "📦 Запуск контейнеров..."
 docker compose -f "$COMPOSE_FILE" up -d
+
+if ! docker compose -f "$COMPOSE_FILE" ps | grep -qi "Up"; then
+    echo "❌ Контейнеры не запустились. Проверь логи вручную."
+    exit 1
+fi
 
 # Проверка состояния
 echo "🔍 Состояние контейнеров:"

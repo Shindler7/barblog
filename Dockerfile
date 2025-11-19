@@ -19,6 +19,7 @@ ENV LANG=ru_RU.UTF-8
 
 # Установка системных зависимостей
 RUN apt-get update && apt-get install -y \
+    procps \
     git \
     curl \
     locales &&  \
@@ -42,6 +43,9 @@ RUN pip install --upgrade pip && \
 
 # Копируем код приложения
 COPY --chown=app:app . .
+# Запускной скрипт с правами запуска.
+RUN chmod +x ./entrypoint.sh
+RUN chmod +x ./deploy.sh
 
 # Переключаемся на непривилегированного пользователя
 USER app

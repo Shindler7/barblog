@@ -1,11 +1,10 @@
-name: barblog
 services:
   web:
     build: .
     image: barblog:latest
     env_file:
       - .env
-    command: ["./entrypoint.sh"]
+    command: ["/home/app/entrypoint.sh"]
     volumes:
       - ./media:/home/app/media
       - ./logs:/home/app/logs
@@ -15,7 +14,28 @@ services:
     restart: unless-stopped
     networks:
       - backend
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # ports:
+    #   - "15432:5432"
+    networks:
+      - backend
 
 networks:
   backend:
     driver: bridge
+
+volumes:
+  postgres_data:
