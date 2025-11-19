@@ -178,7 +178,6 @@ FIRST_DAY_OF_WEEK = 1
 STATICFILES_DIRS = [
     BASE_DIR / 'staticshare/backend/build',
     BASE_DIR / 'staticshare/frontend/build',
-    # BASE_DIR / 'static',
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -256,18 +255,6 @@ WAGTAIL_SITE_NAME = 'Barmichev.ru'
 WAGTAILADMIN_BASE_URL = 'https://barmichev.ru'
 WAGTAILDOCS_EXTENSIONS = ['docx', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx']
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
-
-# WAGTAILADMIN_RICH_TEXT_EDITORS = {
-#     'default': {
-#         'WIDGET': 'wagtail.admin.rich_text.DraftailRichTextArea',
-#         'OPTIONS': {
-#             'features': ['h2', 'bold', 'italic', 'link', 'document-link']
-#         }
-#     },
-#     'secondary': {
-#         'WIDGET': 'some.external.RichTextEditor',
-#     }
-# }
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
     'default': {

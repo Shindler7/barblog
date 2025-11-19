@@ -4,6 +4,7 @@ module.exports = {
     mode: 'production',
     entry: {
         main: './staticshare/frontend/src/main.js',
+        listeners: './staticshare/frontend/src/listeners.js'
     },
     output: {
         path: path.resolve(__dirname, 'staticshare/frontend/build'),

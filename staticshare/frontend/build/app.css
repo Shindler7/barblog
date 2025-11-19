@@ -5,6 +5,44 @@
     box-sizing: border-box;
 }
 
+/* Сокрытие прыжков стилей из-за загрузки внешних CSS */
+/*body {*/
+/*    opacity: 0;*/
+/*}*/
+
+/*body.loaded {*/
+/*    opacity: 1;*/
+/*}*/
+/* Завершение блока */
+
+#loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+#loader img {
+    max-width: 120px;
+    height: auto;
+}
+
+body.loading main,
+body.loading footer {
+    display: none;
+}
+
+body.loaded #loader {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* Адаптивные изображения */
 img {
     max-width: 100%;
