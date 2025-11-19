@@ -1,0 +1,57 @@
+FROM node:25 AS node-build
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm install
+
+FROM python:3.13-slim
+LABEL authors="barmichev"
+
+# Безопасность и производительность
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PIP_NO_CACHE_DIR=1
+
+# Локализация
+ENV LC_ALL=ru_RU.UTF-8
+ENV LANG=ru_RU.UTF-8
+ENV DB_HOST=host.docker.internal
+
+# Установка системных зависимостей
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    locales &&  \
+    sed -i '/ru_RU.UTF-8/s/^# //g' /etc/locale.gen &&  \
+    locale-gen &&  \
+    rm -rf /var/lib/apt/lists/*
+
+# Создание пользователя для безопасности (не root)
+RUN useradd --create-home --shell /bin/bash app
+WORKDIR /home/app
+
+# Заберём установленные модули из предыдущего этапа.
+COPY --from=node-build /app/node_modules /app/node_modules
+COPY --from=node-build /app/package.json /app/package.json
+
+# Копируем зависимости отдельно для кеширования слоёв
+COPY requirements.txt .
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    pip install git+https://github.com/Shindler7/edhandlers.git
+
+# Копируем код приложения
+COPY --chown=app:app . .
+
+# Переключаемся на непривилегированного пользователя
+USER app
+
+# Порты
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8080/health/ || exit 1
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]

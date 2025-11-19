@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{{ page.title }} — Блог{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+
+        <article class="blog-post mx-auto" style="max-width: 800px;">
+
+            <p class="text-muted small mb-2">
+                {{ page.date }}
+                {% if page.tags.all %}
+                    &nbsp; • &nbsp;
+                    {% for tag in page.tags.all %}
+                        <span class="badge rounded-pill bg-secondary-subtle text-dark small">{{ tag }}</span>
+                    {% endfor %}
+                {% endif %}
+            </p>
+
+            <h1 class="fw-bold display-5 mb-4">{{ page.title }}</h1>
+
+            {% if page.hero_image %}
+                <img src="{{ page.hero_image.url }}"
+                     class="img-fluid rounded shadow-sm mb-4"
+                     alt="{{ page.title }}">
+            {% endif %}
+
+            {% if page.intro %}
+                <p class="lead text-body-secondary mb-4">{{ page.intro }}</p>
+            {% endif %}
+
+            <div class="rich-text-content mb-5">
+                {{ page.body }}
+            </div>
+
+            {% if page.gallery_images.all %}
+                <section class="mb-5 pt-4 border-top">
+                    <h5 class="mb-3">📷 Галерея</h5>
+                    <div class="row g-4">
+                        {% for item in page.gallery_images.all %}
+                            <div class="col-md-6">
+                                <figure>
+                                    {% image item.image fill-800x500 as img %}
+                                    <img src="{{ img.url }}"
+                                         alt="{{ item.caption }}"
+                                         class="img-fluid rounded shadow-sm mb-2"/>
+                                    {% if item.caption %}
+                                        <figcaption
+                                                class="text-muted small">{{ item.caption }}</figcaption>
+                                    {% endif %}
+                                </figure>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+
+            <a href="{{ page.get_parent.url }}"
+               class="btn btn-outline-secondary mt-4">← Назад ко всем
+                записям</a>
+        </article>
+
+    </div>
+{% endblock %}

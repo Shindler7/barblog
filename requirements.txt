@@ -1,0 +1,18 @@
+# Django и утилиты
+Django
+django-environ
+django-cors-headers
+
+# Wagtail
+wagtail
+wagtailcodeblock
+Pygments
+
+# Сетевые утилиты или для работы с сетями
+gunicorn
+
+# База данных
+psycopg2-binary
+
+# Утилиты
+# ehandlers @ git+https://github.com/Shindler7/edhandlers.git

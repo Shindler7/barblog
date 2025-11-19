@@ -1,0 +1,20 @@
+.idea/
+.venv/
+venv/
+node_modules/
+logs/
+media/
+staticshare/frontend/src/
+staticshare/backend/src/
+static/
+
+# Файлы
+.flake8
+docker_start.bat
+Dockerfile.dev
+.dockerignore
+.env
+compose-dev.yaml
+compose.yaml
+dockerc-start.bat
+req_dev.txt

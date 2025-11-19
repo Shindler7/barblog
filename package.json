@@ -1,0 +1,32 @@
+{
+    "name": "barblog",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --mode=production"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Shindler7/barblog.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Shindler7/barblog/issues"
+    },
+    "homepage": "https://github.com/Shindler7/barblog#readme",
+    "description": "Self-developed educational initiative for learning and enlightenment",
+    "devDependencies": {
+        "@babel/core": "^7.28.5",
+        "@babel/preset-env": "^7.28.5",
+        "babel-loader": "^10.0.0",
+        "css-loader": "^7.1.2",
+        "style-loader": "^4.0.0",
+        "webpack": "^5.102.1",
+        "webpack-cli": "^6.0.1"
+    },
+    "dependencies": {
+        "bootstrap": "^5.3.8"
+    }
+}

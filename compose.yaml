@@ -1,0 +1,21 @@
+name: barblog
+services:
+  web:
+    build: .
+    image: barblog:latest
+    env_file:
+      - .env
+    command: ["./entrypoint.sh"]
+    volumes:
+      - ./media:/home/app/media
+      - ./logs:/home/app/logs
+      - ./staticfiles:/home/app/staticfiles
+    ports:
+      - "8001:8001"
+    restart: unless-stopped
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

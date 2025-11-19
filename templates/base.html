@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Владислав Бармичев{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'app.css' %}">
+    {% block extra_css %}<!-- Для дополнительных CSS -->{% endblock %}
+</head>
+<body class="bg-light text-dark">
+
+    {% if messages %}
+        {# Блок вывода сообщений #}
+        {% include 'commons/messages.html' with messages=messages %}
+    {% endif %}
+
+    <main role="main" class="container py-4">
+    {% block content %}
+        <div class="container-fluid">
+            <!-- Контент страницы -->
+        </div>
+    {% endblock %}
+    </main>
+
+    {% include 'footer.html' %}
+
+<script src="{% static 'main.bundle.js' %}"></script>
+    {% block extra_js %}<!-- Для дополнительных JS -->{% endblock %}
+</body>
+</html>
