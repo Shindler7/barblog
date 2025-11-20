@@ -1,7 +1,7 @@
 services:
   web:
-    build: .
-    image: barblog:latest
+#    build: .
+    image: schindler7/barblog:latest
     env_file:
       - .env
     command: ["/home/app/entrypoint.sh"]
