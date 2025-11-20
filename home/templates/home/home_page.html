@@ -47,7 +47,7 @@
         {% endif %}
 
         <section class="blog-feed">
-            {% for post in page.get_children.specific|dictsortreversed:"date" %}
+            {% for post in page.get_children.live.specific|dictsortreversed:"date" %}
                 <article class="mb-5 pb-4 border-bottom border-2"
                          style="border-color: #e1e5ea;">
                     <div class="mb-2 text-muted small d-flex align-items-center gap-3">
