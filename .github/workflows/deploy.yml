@@ -63,7 +63,7 @@ jobs:
             cd /swat/barblog
             git reset --hard
             git clean -fd
-            git pull origin main
+            git pull https://x-access-token:${{ secrets.GT_PULL_TOKEN }}@github.com/Shindler7/barblog.git main
             if [ ! -f .env ]; then
               echo ".env not found" && exit 1
             fi
