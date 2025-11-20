@@ -64,7 +64,6 @@ jobs:
             if [ ! -f .env ]; then
               echo ".env not found" && exit 1
             fi
-            docker compose -f compose.yaml pull web
-            docker compose -f compose.yaml up -d
+            docker compose -f compose.yaml up -d --pull always
             docker system prune --force
             
