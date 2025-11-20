@@ -61,9 +61,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /swat/barblog
+            git pull
             if [ ! -f .env ]; then
               echo ".env not found" && exit 1
             fi
             docker compose -f compose.yaml up -d --pull always
             docker system prune --force
-            
