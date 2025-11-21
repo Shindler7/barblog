@@ -47,7 +47,7 @@
         {% endif %}
 
         <section class="blog-feed">
-            {% for post in page.get_children.live.specific|dictsortreversed:"date" %}
+            {% for post in blogpages.specific|dictsortreversed:"date" %}
                 <article class="mb-5 pb-4 border-bottom border-2"
                          style="border-color: #e1e5ea;">
                     <div class="mb-2 text-muted small d-flex align-items-center gap-3">
@@ -68,11 +68,9 @@
                         </a>
                     </h2>
 
-                    {% if post.hero_image %}
+                    {% if post.has_hero_image %}
                         <a href="{% pageurl post %}">
-                            <img src="{{ post.hero_image.url }}"
-                                 class="img-fluid rounded mb-3 shadow-sm"
-                                 alt="{{ post.title }}">
+                            {% image post.hero_image fill-200x140 class="img-fluid rounded mb-3 shadow-sm" alt="{{ post.title }}" %}
                         </a>
                     {% endif %}
 
