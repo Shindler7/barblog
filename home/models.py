@@ -1,7 +1,7 @@
 from typing import Optional
 
 from django.db import models
-from modelcluster.fields import ParentalKey
+from modelcluster.fields import ParentalKey  # noqa
 from wagtail import blocks
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField, StreamField
@@ -15,6 +15,8 @@ class HomePage(Page):
     """
     Заглавная страница блога.
     """
+
+    is_creatable = False
 
     intro = RichTextField(blank=True)
 
@@ -35,6 +37,9 @@ class ArticlePage(Page):
     """
     Отдельная страница записи в блоге.
     """
+
+    parent_page_types = ['HomePage']
+    page_type_display_name = 'Страница блога'
 
     date = models.DateField("дата")
     intro = models.CharField(max_length=250)

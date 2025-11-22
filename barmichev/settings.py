@@ -79,7 +79,7 @@ INSTALLED_APPS = [
     'wagtail',
     'modelcluster',
     'taggit',
-    'wagtailcodeblock'
+    'wagtailcodeblock',
 ]
 
 MIDDLEWARE = [
